@@ -37,11 +37,3 @@ Use Expo Go app on your Android or iOS device to scan the QR code and see the ap
 
 Contributing
 We welcome contributions from the community! If you have any ideas, bug fixes, or improvements, please submit an issue or create a pull request.
-
-Support
-If you encounter any issues or have questions, feel free to reach out to us at support@explorecampusapp.com.
-
-Download the App
-Unlock the full potential of your campus experience by downloading ExploreCampus on Google Play or App Store.
-
-Explore, engage, and efficiently manage your university life with ExploreCampus!
