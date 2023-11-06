@@ -1,25 +1,34 @@
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Image } from 'react-native';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase'; // Make sure you have imported your Firebase configuration correctly.
 import { useNavigation } from '@react-navigation/native';
 
 const logo = require('../assets/Logo.png');
 
-const LoginScreen = () => {
+const SignUpScreen = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [reenteredPassword, setReenteredPassword] = useState(''); // New state for re-entered password
 
     const navigation = useNavigation();
 
-    const handleLogin = () => {
-        signInWithEmailAndPassword(auth, email, password)
-            .then(userCredentials => {
-                const user = userCredentials.user;
-                console.log('Logged in with: ', user.email);
-                navigation.navigate('Home'); // Navigate to the home screen upon successful login
-            })
-            .catch(error => alert(error.message));
+    const handleSignUp = () => {
+        if (password === reenteredPassword) {
+            createUserWithEmailAndPassword(auth, email, password)
+                .then(userCredentials => {
+                    const user = userCredentials.user;
+                    console.log('Signed up with: ', user.email);
+                    navigation.navigate('Home'); // Navigate to the home screen upon successful signup
+                })
+                .catch(error => alert(error.message));
+        } else {
+            alert("Passwords do not match. Please re-enter your password.");
+        }
+    };
+
+    const goToLogin = () => {
+        navigation.navigate('Login');
     };
 
     return (
@@ -27,7 +36,6 @@ const LoginScreen = () => {
             <View style={styles.logoContainer}>
                 <Image source={logo} style={styles.logo} resizeMode="contain" />
             </View>
-
             <View style={styles.inputContainer}>
                 <TextInput
                     placeholder='Email'
@@ -42,32 +50,29 @@ const LoginScreen = () => {
                     style={styles.input}
                     secureTextEntry
                 />
-            </View>
-            <View>
-                <TouchableOpacity
-                    onPress={() => {}}
-                    style={styles.buttonForgot}
-                >
-                    <Text style={styles.buttonForgotText}>Forgot your password</Text>
-                </TouchableOpacity>
+                <TextInput
+                    placeholder='Re-enter Password' // Added re-enter password input
+                    value={reenteredPassword}
+                    onChangeText={text => setReenteredPassword(text)}
+                    style={styles.input}
+                    secureTextEntry
+                />
             </View>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                    onPress={handleLogin}
-                    style={styles.button}
-                >
-                    <Text style={styles.buttonText}>Sign in</Text>
+                <TouchableOpacity onPress={handleSignUp} style={styles.button}>
+                    <Text style={styles.buttonText}>Sign up</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('SignUp')} // Navigate to SignUpScreen
-                    style={[styles.button, styles.buttonOutLine]}
-                >
-                    <Text style={styles.buttonOutLineText}>Create a new account</Text>
+            </View>
+            <View style={styles.loginContainer}>
+                <Text>Already have an account?</Text>
+                <TouchableOpacity onPress={goToLogin}>
+                    <Text style={styles.loginText}>Log in</Text>
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>
     );
 }
+
 
 const styles = StyleSheet.create({
     container: {
@@ -100,27 +105,24 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignItems: 'center',
     },
-    buttonOutLine: {
-        backgroundColor: 'white',
-        marginTop: 5,
-        borderColor: '#565F24',
-        borderWidth: 2,
-    },
     buttonText: {
         color: 'white',
         fontWeight: '700',
         fontSize: 16,
     },
-    buttonOutLineText: {
+    loginContainer: {
+        flexDirection: 'row',
+        marginTop: 20,
+        alignItems: 'center',
+    },
+    loginText: {
         color: '#565F24',
         fontWeight: '700',
         fontSize: 16,
-    },
-    buttonForgot: {
-        color: '#565F24',
-        marginRight: 10,
+        marginLeft: 5,
     },
     logoContainer: {
+        alignItems: "center",
         width: 400, // Set to the actual width of your Logo.png
         height: 100, // Set to the actual height of your Logo.png
     },
@@ -130,4 +132,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LoginScreen;
+export default SignUpScreen;

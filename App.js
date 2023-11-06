@@ -1,7 +1,4 @@
-
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './screens/LoginScreen';
@@ -15,6 +12,8 @@ import EditProfileScreen from './screens/EditProfileScreen';
 import ClubsScreen from './screens/Categories/ClubsScreen';
 import EventsScreen from './screens/Categories/EventsScreen';
 import SportsScreen from './screens/Categories/SportsScreen';
+import SignUpScreen from './screens/SignUpScreen';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -26,6 +25,11 @@ export default function App() {
         <Stack.Screen
           name="Login"
           component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUpScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
