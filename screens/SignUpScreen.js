@@ -9,8 +9,7 @@ const logo = require('../assets/Logo.png');
 const SignUpScreen = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [reenteredPassword, setReenteredPassword] = useState(''); // New state for re-entered password
-
+    const [reenteredPassword, setReenteredPassword] = useState('');
     const navigation = useNavigation();
 
     const handleSignUp = () => {
@@ -19,7 +18,9 @@ const SignUpScreen = () => {
                 .then(userCredentials => {
                     const user = userCredentials.user;
                     console.log('Signed up with: ', user.email);
-                    navigation.navigate('Home'); // Navigate to the home screen upon successful signup
+
+                    // Navigate to UserDetailsScreen after successful signup
+                    navigation.navigate('UserDetails');
                 })
                 .catch(error => alert(error.message));
         } else {
@@ -51,7 +52,7 @@ const SignUpScreen = () => {
                     secureTextEntry
                 />
                 <TextInput
-                    placeholder='Re-enter Password' // Added re-enter password input
+                    placeholder='Re-enter Password'
                     value={reenteredPassword}
                     onChangeText={text => setReenteredPassword(text)}
                     style={styles.input}
@@ -72,7 +73,6 @@ const SignUpScreen = () => {
         </KeyboardAvoidingView>
     );
 }
-
 
 const styles = StyleSheet.create({
     container: {

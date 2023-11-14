@@ -6,8 +6,6 @@ import { useNavigation } from '@react-navigation/native';
 const HomeScreen = () => {
   const user = {
     name: 'John Doe',
-    branch: 'CSE',
-    Section: 'O',
     profileImage: require('../assets/user-profile.jpeg'),
   };
 
