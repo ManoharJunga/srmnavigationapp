@@ -15,25 +15,27 @@ const UserDetailsScreen = ({ navigation }) => {
                 console.log('Permission to access media library denied');
                 return;
             }
-
+    
             const options = {
                 title: 'Select Photo',
                 storageOptions: {
                     skipBackup: true,
                     path: 'images',
                 },
+                mediaTypes: ImagePicker.MediaTypeOptions.Images, // Set mediaTypes option to Images
+                quality: 1, // Set the quality of the picked image
             };
-
+    
             const result = await ImagePicker.launchImageLibraryAsync(options);
-
-            if (!result.cancelled) {
-                setPhoto({ uri: result.uri });
+    
+            if (!result.canceled && result.assets.length > 0) {
+                const selectedImage = result.assets[0]; // Access the selected image from the assets array
+                setPhoto({ uri: selectedImage.uri }); // Set the photo using the URI
             }
         } catch (error) {
             console.error('Error picking image:', error);
         }
     };
-
     const handleSaveDetails = async () => {
         try {
             if (!photo) {
