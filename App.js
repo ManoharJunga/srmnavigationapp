@@ -73,8 +73,106 @@ export default function App() {
               fontWeight: 'bold',
             },
           }}
-        />
-        {/* Other screens... */}
+        /><Stack.Screen
+        name="Location"
+        component={LocationScreen}
+        options={{
+          title: 'Location',
+          headerStyle: {
+            backgroundColor: '#565F24',
+          },
+          headerTintColor: 'white',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+      <Stack.Screen
+        name="History"
+        component={HistoryScreen}
+        options={{
+          title: 'History',
+          headerStyle: {
+            backgroundColor: '#565F24',
+          },
+          headerTintColor: 'white',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          title: 'Profile',
+          headerStyle: {
+            backgroundColor: '#565F24',
+          },
+          headerTintColor: 'white',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+      <Stack.Screen
+        name="UpcomingEvents"
+        component={UpcomingEventsScreen}
+        options={{
+          title: 'Upcoming Events',
+          headerStyle: {
+            backgroundColor: '#565F24',
+          },
+          headerTintColor: 'white',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+      <Stack.Screen
+        name="EditProfile"
+        component={EditProfileScreen}
+        options={{
+          title: 'Edit Profile',
+          headerStyle: {
+            backgroundColor: '#565F24',
+          },
+          headerTintColor: 'white',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+      <Stack.Screen name="Clubs" component={ClubsScreen} options={{
+          title: 'Clubs',
+          headerStyle: {
+            backgroundColor: '#565F24',
+          },
+          headerTintColor: 'white',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}/>
+<Stack.Screen name="Events" component={EventsScreen} options={{
+          title: 'Events',
+          headerStyle: {
+            backgroundColor: '#565F24',
+          },
+          headerTintColor: 'white',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}/>
+<Stack.Screen name="Sports" component={SportsScreen} options={{
+          title: 'Sports',
+          headerStyle: {
+            backgroundColor: '#565F24',
+          },
+          headerTintColor: 'white',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
